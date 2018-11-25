@@ -1,0 +1,9 @@
+rootProject.name = 'Java Senior'
+
+include 'algorithms'
+include 'basic'
+include 'patterns'
+include 'core'
+include 'online'
+include 'collections'
+
