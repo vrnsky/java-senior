@@ -1,24 +1,29 @@
 package me.vrnsky;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class SelectionSort {
 
-    private int findMinimal(Integer[] array, int start, int finish) {
-        int min = Integer.MAX_VALUE;
-        for (int index = start; index < finish; index++) {
-            if (array[index] != null && array[index] < min) {
-                min = array[index];
-                array[index] = null;
+    private int findMinimal(List<Integer> numbers) {
+        int smallestIndex = 0;
+        int min = numbers.get(0);
+        for (int index = 0; index < numbers.size(); index++) {
+            if (min >= numbers.get(index)) {
+                min = numbers.get(index);
+                smallestIndex = index;
             }
         }
-        return min;
+        return smallestIndex;
     }
 
-    public int[] sort(Integer[] array) {
-        int[] sorted = new int[array.length];
-        int index = 0;
-        for (int counter = 0; counter < array.length; counter++) {
-            sorted[index++] = findMinimal(array, counter, array.length);
+    public List<Integer> sort(List<Integer> array) {
+        List<Integer> sorted = new ArrayList<>();
+        while (!array.isEmpty()) {
+            int smallest = findMinimal(array);
+            sorted.add(array.get(smallest));
+            array.remove(smallest);
         }
-        return sorted;
+            return sorted;
     }
 }
