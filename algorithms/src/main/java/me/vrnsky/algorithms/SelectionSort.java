@@ -1,4 +1,4 @@
-package me.vrnsky;
+package me.vrnsky.algorithms;
 
 import java.util.ArrayList;
 import java.util.List;

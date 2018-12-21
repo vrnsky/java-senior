@@ -1,4 +1,4 @@
-package me.vrnsky;
+package me.vrnsky.algorithms;
 
 public class QuickSort {
 
