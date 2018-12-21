@@ -23,12 +23,19 @@ public class MyArrayList implements List {
 
     @Override
     public boolean addAll(Collection c) {
-        Object[] tail = c.toArray();
-        Object[] newData = new Object[tail.length + data.length];
-        System.arraycopy(data, 0, newData, 0, data.length);
-        System.arraycopy(tail, 0, newData, data.length, tail.length);
-        data = newData;
-        size += c.size();
+        if (!isEmpty()) {
+            Object[] tail = c.toArray();
+            Object[] newData = new Object[tail.length + data.length];
+            System.arraycopy(data, 0, newData, 0, data.length);
+            System.arraycopy(tail, 0, newData, data.length, tail.length);
+            data = newData;
+            size += c.size();
+        } else {
+            for (Object o : c) {
+                data[positionPointer++] = o;
+            }
+            size += c.size();
+        }
         return true;
     }
 
@@ -48,7 +55,7 @@ public class MyArrayList implements List {
     @Override
     public boolean contains(Object o) {
         for (Object obj : this.data) {
-            if (obj.equals(o)) {
+            if (obj != null && obj.equals(o)) {
                 return true;
             }
         }
@@ -117,7 +124,7 @@ public class MyArrayList implements List {
             Iterator iterator = c.iterator();
             while (iterator.hasNext()) {
                 Object next = iterator.next();
-                if (next != null && object.equals(next)) {
+                if (object != null && object.equals(next)) {
                     count++;
                 }
             }
@@ -161,12 +168,22 @@ public class MyArrayList implements List {
 
     @Override
     public void add(int index, Object element) {
-
+        if(isValidIndex(index)) {
+            data[index] = element;
+        } else {
+            add(element);
+        }
     }
 
     @Override
     public Object remove(int index) {
-        return null;
+        Object removed = null;
+        if (isValidIndex(index)) {
+            removed = data[index];
+            data[index] = null;
+            size--;
+        }
+        return removed;
     }
 
     @Override
@@ -212,9 +229,9 @@ public class MyArrayList implements List {
     }
 
     private void ensureCapacityIfNeeds() {
-        int loadPercentage = ((size * 3 )/ 4) * 100;
+        int loadPercentage = ((size * 3) / 4) * 100;
         if (loadPercentage > 75) {
-            int ensuredCapacity = (data.length * 2 ) / 3;
+            int ensuredCapacity = (data.length * 2) / 3;
             Object[] newData = new Object[ensuredCapacity];
             System.arraycopy(data, 0, newData, 0, data.length);
             data = newData;

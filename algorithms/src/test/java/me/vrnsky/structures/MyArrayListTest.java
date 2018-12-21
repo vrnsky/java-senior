@@ -6,6 +6,7 @@ import java.util.Arrays;
 import java.util.List;
 
 import static org.hamcrest.core.Is.is;
+import static org.hamcrest.core.IsNull.nullValue;
 import static org.junit.Assert.assertThat;
 
 public class MyArrayListTest {
@@ -64,5 +65,42 @@ public class MyArrayListTest {
         list.removeAll(Arrays.asList("context1", "context2", "context3"));
         assertThat(list.size(), is(0));
     }
+
+    @Test
+    @SuppressWarnings("unchecked")
+    public void whenTryGetFirstIndexOfTheElementShouldCheckThatIsEarlier() {
+        List list = new MyArrayList();
+        list.addAll(Arrays.asList("context1", "context2", "context3"));
+        assertThat(list.indexOf("context1"), is(0));
+    }
+
+    @Test
+    @SuppressWarnings("unchecked")
+    public void whenTryLastIndexOfTheElementShouldCheckThatIsLast() {
+        List list = new MyArrayList();
+        list.addAll(Arrays.asList("context1", "context2", "context3"));
+        assertThat(list.lastIndexOf("context2"), is(1));
+    }
+
+    @Test
+    @SuppressWarnings("unchecked")
+    public void whenTryAddByIndexShouldCheckThatItAdded() {
+        List list = new MyArrayList();
+        list.add("egor");
+        list.add("egor");
+        list.add(0, "voronyansky");
+        assertThat(list.get(0), is("voronyansky"));
+    }
+
+    @Test
+    @SuppressWarnings("unchecked")
+    public void whenRemoveByIndexShouldCheckThatIsWasRemoved() {
+        List list = new MyArrayList();
+        list.add("egor");
+        list.add("voronyansky");
+        list.remove(1);
+        assertThat(list.get(1), is(nullValue()));
+    }
+
 
 }
