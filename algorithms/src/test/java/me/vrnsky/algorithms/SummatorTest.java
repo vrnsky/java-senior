@@ -1,10 +1,9 @@
-package me.vrnsky;
+package me.vrnsky.algorithms;
 
-import me.vrnsky.algorithms.Summator;
 import org.junit.Test;
 
 import static org.hamcrest.core.Is.is;
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertThat;
 
 public class SummatorTest {
 

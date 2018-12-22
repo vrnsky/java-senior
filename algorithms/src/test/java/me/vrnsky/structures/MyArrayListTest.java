@@ -2,6 +2,7 @@ package me.vrnsky.structures;
 
 import org.junit.Test;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -102,5 +103,26 @@ public class MyArrayListTest {
         assertThat(list.get(1), is(nullValue()));
     }
 
+    @Test
+    @SuppressWarnings("unchecked")
+    public void speedTestInsertComparing() {
+        List<String> jdkList = new ArrayList<>();
+        List myList = new MyArrayList();
+        int elements = 30;
 
+        long startTime = System.nanoTime();
+        for (int index = 0; index < elements; index++) {
+            jdkList.add("jdkLists");
+        }
+        long finishTime = System.nanoTime();
+        System.out.println((finishTime - startTime) + " ns take " + jdkList.size() + " insert into jdkList");
+
+        startTime = System.nanoTime();
+
+        for (int index = 0; index < elements; index++) {
+            myList.add("myLists");
+        }
+        finishTime = System.nanoTime();
+        System.out.println((finishTime - startTime) + " ns take " + myList.size() + " insert into my list");
+    }
 }

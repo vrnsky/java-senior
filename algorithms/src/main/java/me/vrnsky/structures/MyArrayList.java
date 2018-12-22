@@ -10,12 +10,19 @@ public class MyArrayList implements List {
     private int positionPointer = 0;
 
     public MyArrayList() {
-        this.data = new Object[100];
+        this(100);
+    }
+
+    public MyArrayList(int capacity) {
+        this.data = new Object[capacity];
     }
 
     @Override
     public boolean add(Object o) {
         ensureCapacityIfNeeds();
+        if (positionPointer + 1 > data.length) {
+            ensureCapacityIfNeeds();
+        }
         data[positionPointer++] = o;
         size++;
         return true;
@@ -168,7 +175,7 @@ public class MyArrayList implements List {
 
     @Override
     public void add(int index, Object element) {
-        if(isValidIndex(index)) {
+        if (isValidIndex(index)) {
             data[index] = element;
         } else {
             add(element);
@@ -229,13 +236,10 @@ public class MyArrayList implements List {
     }
 
     private void ensureCapacityIfNeeds() {
-        int loadPercentage = ((size * 3) / 4) * 100;
-        if (loadPercentage > 75) {
-            int ensuredCapacity = (data.length * 2) / 3;
-            Object[] newData = new Object[ensuredCapacity];
-            System.arraycopy(data, 0, newData, 0, data.length);
-            data = newData;
-        }
+        int newLength = (data.length * 3) / 2 + 1;
+        Object[] newValues = new Object[newLength];
+        System.arraycopy(data, 0, newValues, 0, data.length);
+        this.data = newValues;
     }
 
     private boolean isValidIndex(int askedPosition) {
