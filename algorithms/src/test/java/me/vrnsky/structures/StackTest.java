@@ -24,7 +24,7 @@ public class StackTest {
     }
 
     @Test
-    public void whenPeekElementShouldElementWasNotRemoved() {
+    public void whenPegiekElementShouldElementWasNotRemoved() {
         Stack stack = new Stack();
         stack.push("context1");
         stack.push("context2");

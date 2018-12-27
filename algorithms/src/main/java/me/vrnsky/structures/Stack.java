@@ -28,7 +28,7 @@ public class Stack {
     }
 
     public Object peek() {
-        return data[--size];
+        return data[size - 1];
     }
 
     public int size() {
