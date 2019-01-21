@@ -1,6 +1,5 @@
-package me.vrnsky;
+package me.vrnsky.algorithms;
 
-import me.vrnsky.algorithms.SelectionSort;
 import org.junit.Test;
 
 import java.util.ArrayList;

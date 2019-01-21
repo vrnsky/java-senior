@@ -1,6 +1,5 @@
-package me.vrnsky;
+package me.vrnsky.algorithms;
 
-import me.vrnsky.algorithms.BinarySearch;
 import org.junit.Test;
 
 import static org.hamcrest.core.Is.is;
