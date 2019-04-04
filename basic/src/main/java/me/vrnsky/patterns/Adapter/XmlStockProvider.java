@@ -1,6 +1,7 @@
 package me.vrnsky.patterns.Adapter;
 
-public class XmlStockProvider {
+public class XmlStockProvider implements XmlStockClient {
+
 
 
     public String getStockInfo() {

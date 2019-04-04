@@ -1,6 +1,8 @@
 package me.vrnsky.patterns.Adapter;
 
-public interface JsonAdapter {
+public class JsonAdapter {
 
-    String xmlToJson(String xml);
+    public String xmlToJson(String xml) {
+        return "json";
+    }
 }
